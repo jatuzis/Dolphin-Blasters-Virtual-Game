@@ -6,6 +6,9 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour {
 
     [SerializeField]
+    private int _player_number;
+
+    [SerializeField]
     private float _max_ball_velocity;
 
     [SerializeField]
@@ -34,7 +37,7 @@ public class PlayerBehaviour : MonoBehaviour {
         Rotate();
 
         //throws the ball once the player presses the fire button and he has something that he can throw
-        if(Input.GetButton("Fire1") && _ball != null)
+        if(Input.GetButton("Fire" + _player_number) && _ball != null)
         {
             Fire();
         }
@@ -43,7 +46,7 @@ public class PlayerBehaviour : MonoBehaviour {
     //moves the player according to the input given by the controller
     void Move()
     {
-        Vector3 velocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * _movement_speed * Time.deltaTime;
+        Vector3 velocity = new Vector3(Input.GetAxis("Horizontal" + _player_number), 0, Input.GetAxis("Vertical" + _player_number)) * _movement_speed * Time.deltaTime;
         _rb.velocity = velocity;
     }
 
