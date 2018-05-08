@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
@@ -29,6 +30,9 @@ public class PlayerMovement : MonoBehaviour {
     void Rotate()
     {
         Vector3 velocity = _rb.velocity;
-        transform.rotation = Quaternion.LookRotation(new Vector3(velocity.x, 0, velocity.z));
+        if (velocity.magnitude > 0.15f)
+        {
+            transform.rotation = Quaternion.LookRotation(new Vector3(velocity.x, 0, velocity.z));
+        }
     }
 }

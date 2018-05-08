@@ -122,7 +122,6 @@ GameObject:
   m_Component:
   - component: {fileID: 44579587}
   - component: {fileID: 44579590}
-  - component: {fileID: 44579589}
   - component: {fileID: 44579588}
   m_Layer: 0
   m_Name: Sphere
@@ -178,18 +177,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &44579589
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 44579586}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &44579590
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -238,7 +225,6 @@ GameObject:
   m_Component:
   - component: {fileID: 135342942}
   - component: {fileID: 135342945}
-  - component: {fileID: 135342944}
   - component: {fileID: 135342943}
   m_Layer: 0
   m_Name: Nose
@@ -294,18 +280,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &135342944
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 135342941}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &135342945
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -387,8 +361,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 259905862}
-  m_LocalRotation: {x: 0.29431963, y: -0.020070609, z: 0.006182892, w: 0.9554763}
-  m_LocalPosition: {x: 0.06266395, y: 8.056748, z: -12.637186}
+  m_LocalRotation: {x: -0.372136, y: -0.0033323655, z: 0.0013357493, w: -0.9281713}
+  m_LocalPosition: {x: -0.41200382, y: 4.6674075, z: -7.5845695}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -889,8 +863,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1964885952}
-  - component: {fileID: 1964885951}
   - component: {fileID: 1964885950}
+  - component: {fileID: 1964885951}
   - component: {fileID: 1964885949}
   m_Layer: 0
   m_Name: PlayerTest
@@ -911,8 +885,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movement_speed: 500
---- !u!65 &1964885950
-BoxCollider:
+--- !u!135 &1964885950
+SphereCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -921,7 +895,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1964885951
 Rigidbody:
