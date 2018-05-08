@@ -67,6 +67,7 @@ public class PlayerBehaviour : MonoBehaviour {
         ball_rb.velocity = Vector3.zero;
         ball_rb.AddForce(new Vector3(transform.forward.x * 1000, 0, transform.forward.z * 1000) /* * _throwing_force?*/, ForceMode.Force);
         _ball = null;
+        GameManager.current_ball_owner = null;
     }
 
     //recognizes collisions
@@ -77,10 +78,11 @@ public class PlayerBehaviour : MonoBehaviour {
         {
             GameObject ball = collision.gameObject;
             Rigidbody ball_rb = ball.GetComponent<Rigidbody>();
-            if(ball_rb.velocity.magnitude < _max_ball_velocity)
+            if(ball_rb.velocity.magnitude < _max_ball_velocity && GameManager.current_ball_owner == null)
             {
                 _ball = ball;
                 ball_rb.velocity = Vector3.zero;
+                GameManager.current_ball_owner = this;
             }
         }
     }
