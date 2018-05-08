@@ -33,18 +33,21 @@ public class PlayerBehaviour : MonoBehaviour {
         Move();
         Rotate();
 
+        //throws the ball once the player presses the fire button and he has something that he can throw
         if(Input.GetButton("Fire1") && _ball != null)
         {
             Fire();
         }
     }
 
+    //moves the player according to the input given by the controller
     void Move()
     {
         Vector3 velocity = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")) * _movement_speed * Time.deltaTime;
         _rb.velocity = velocity;
     }
 
+    //rotates the player so he is always watching in the direction he is moving
     void Rotate()
     {
         Vector3 velocity = _rb.velocity;
@@ -54,6 +57,7 @@ public class PlayerBehaviour : MonoBehaviour {
         }
     }
 
+    //Fires the ball and sets the ball to null
     void Fire()
     {
         Rigidbody ball_rb = _ball.GetComponent<Rigidbody>();
@@ -62,6 +66,8 @@ public class PlayerBehaviour : MonoBehaviour {
         _ball = null;
     }
 
+    //recognizes collisions
+    //if collided with the ball while the ball is slow enough he picks up the ball
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Ball")
