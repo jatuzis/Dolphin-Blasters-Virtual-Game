@@ -42,25 +42,8 @@ public class PlayerBehaviour : CharacterBehaviour {
     {
         Rigidbody ball_rb = _ball.GetComponent<Rigidbody>();
         ball_rb.velocity = Vector3.zero;
-        ball_rb.AddForce(new Vector3(transform.forward.x * 1000, 0, transform.forward.z * 1000) /* * _throwing_force?*/, ForceMode.Force);
+        ball_rb.AddForce(new Vector3(transform.forward.x * 2000, 0, transform.forward.z * 2000) /* * _throwing_force?*/, ForceMode.Force);
         _ball = null;
         GameManager.current_ball_owner = null;
     }
-
-    //recognizes collisions
-    //if collided with the ball while the ball is slow enough he picks up the ball
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.tag == "Ball")
-        {
-            GameObject ball = collision.gameObject;
-            Rigidbody ball_rb = ball.GetComponent<Rigidbody>();
-            if(ball_rb.velocity.magnitude < _max_ball_velocity && GameManager.current_ball_owner == null)
-            {
-                _ball = ball;
-                ball_rb.velocity = Vector3.zero;
-                GameManager.current_ball_owner = this;
-            }
-        }
-    }*/
 }
