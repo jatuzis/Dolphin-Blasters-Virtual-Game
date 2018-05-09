@@ -31,6 +31,8 @@ public abstract class CharacterBehaviour : MonoBehaviour {
 
     protected float _hit_timer;
 
+    protected Vector3 _ball_velocity;
+
     [SerializeField]
     protected float _desired_hit_timer;
 
@@ -59,18 +61,15 @@ public abstract class CharacterBehaviour : MonoBehaviour {
         }
     }
 
-    protected void CalculateBlowBack(GameObject obj)
+    protected void CalculateBlowBack(GameObject obj, Transform trans)
     {
         if(obj.tag == "Ball")
         {
-            Vector3 dir = transform.position - obj.transform.position;
-            Debug.Log(dir.normalized * _bounce_multiplier + " " + _bounce_multiplier);
-            _rb.AddForce(dir * _bounce_multiplier, ForceMode.Impulse);
+            Vector3 dir = transform.position - trans.position;
+            Debug.Log(dir + " " + dir.normalized + " " + dir.normalized * _bounce_multiplier + " " + _bounce_multiplier);
+            _rb.AddForce(dir.normalized * 0.1f * _bounce_multiplier);
 
-            _got_hit = true;
-            _hit_timer = _desired_hit_timer;
-
-            dir = obj.transform.position - transform.position;
+            dir = trans.position - transform.position;
             Rigidbody obj_rb = obj.GetComponent<Rigidbody>();
             obj_rb.velocity = Vector3.zero;
             obj_rb.AddForce(dir.normalized * 1000);
@@ -78,7 +77,7 @@ public abstract class CharacterBehaviour : MonoBehaviour {
     }
 
     //increases the _bounce_multiplier so it gets harder for the player when he gets hit 
-    protected void ReceiveDamage(GameObject obj)
+    protected void ReceiveDamage(GameObject obj, Transform trans)
     {
         if (_is_at_wall == true)
         {
@@ -86,7 +85,7 @@ public abstract class CharacterBehaviour : MonoBehaviour {
             Destroy(this.gameObject);
             return;
         }
-        CalculateBlowBack(obj);
+        CalculateBlowBack(obj, trans);
         _bounce_multiplier *= 1.1f;
     }
 
@@ -112,6 +111,10 @@ public abstract class CharacterBehaviour : MonoBehaviour {
             _wall_hit_magnitude = _rb.velocity.magnitude;
             _is_at_wall = true;
         }
+        if(other.tag == "Ball")
+        {
+            _ball_velocity = other.gameObject.GetComponent<Rigidbody>().velocity;
+        }
     }
 
     //recognizes collisions
@@ -120,17 +123,20 @@ public abstract class CharacterBehaviour : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Ball")
         {
+            Transform trans = collision.gameObject.transform;
             GameObject ball = collision.gameObject;
             Rigidbody ball_rb = ball.GetComponent<Rigidbody>();
-            if (ball_rb.velocity.magnitude < _max_ball_velocity && GameManager.current_ball_owner == null)
+            if (_ball_velocity.magnitude < _max_ball_velocity && GameManager.current_ball_owner == null)
             {
                 _ball = ball;
                 ball_rb.velocity = Vector3.zero;
                 GameManager.current_ball_owner = this;
             }
-            else if(GameManager.current_ball_owner == null)
+            else if(GameManager.current_ball_owner == null && _got_hit == false)
             {
-                ReceiveDamage(ball);
+                _got_hit = true;
+                _hit_timer = _desired_hit_timer;
+                ReceiveDamage(ball, trans);
             }
         }
         if(collision.gameObject.tag == "Border")
