@@ -49,7 +49,6 @@ public abstract class CharacterBehaviour : MonoBehaviour {
 
     public void Update()
     {
-        Debug.Log(_is_at_wall);
         if(_hit_timer < 0)
         {
             _got_hit = false;
@@ -66,7 +65,7 @@ public abstract class CharacterBehaviour : MonoBehaviour {
         {
             Vector3 dir = transform.position - obj.transform.position;
             Debug.Log(dir.normalized * _bounce_multiplier + " " + _bounce_multiplier);
-            _rb.AddForce(dir * _bounce_multiplier, ForceMode.VelocityChange);
+            _rb.AddForce(dir * _bounce_multiplier, ForceMode.Impulse);
 
             _got_hit = true;
             _hit_timer = _desired_hit_timer;
