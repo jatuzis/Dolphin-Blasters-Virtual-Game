@@ -3,23 +3,10 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class PlayerBehaviour : MonoBehaviour {
+public class PlayerBehaviour : CharacterBehaviour {
 
     [SerializeField]
     private int _player_number;
-
-    [SerializeField]
-    private float _max_ball_velocity;
-
-    [SerializeField]
-    private float _movement_speed;
-
-    [SerializeField]
-    private Transform _holder;
-
-    private GameObject _ball;
-
-    private Rigidbody _rb;
 
     private void Start()
     {
@@ -44,24 +31,14 @@ public class PlayerBehaviour : MonoBehaviour {
     }
 
     //moves the player according to the input given by the controller
-    void Move()
+    protected override void Move()
     {
         Vector3 velocity = new Vector3(Input.GetAxis("Horizontal" + _player_number), 0, Input.GetAxis("Vertical" + _player_number)) * _movement_speed * Time.deltaTime;
         _rb.velocity = velocity;
     }
 
-    //rotates the player so he is always watching in the direction he is moving
-    void Rotate()
-    {
-        Vector3 velocity = _rb.velocity;
-        if (velocity.magnitude > 0.2f)
-        {
-            transform.rotation = Quaternion.LookRotation(new Vector3(velocity.x, 0, velocity.z));
-        }
-    }
-
     //Fires the ball and sets the ball to null
-    void Fire()
+    protected override void Fire()
     {
         Rigidbody ball_rb = _ball.GetComponent<Rigidbody>();
         ball_rb.velocity = Vector3.zero;
@@ -72,7 +49,7 @@ public class PlayerBehaviour : MonoBehaviour {
 
     //recognizes collisions
     //if collided with the ball while the ball is slow enough he picks up the ball
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Ball")
         {
@@ -85,5 +62,5 @@ public class PlayerBehaviour : MonoBehaviour {
                 GameManager.current_ball_owner = this;
             }
         }
-    }
+    }*/
 }
