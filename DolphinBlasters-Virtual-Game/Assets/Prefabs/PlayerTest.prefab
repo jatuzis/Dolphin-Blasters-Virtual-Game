@@ -316,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _die_magnitude: 15
   _bounce_multiplier: 1
-  _max_ball_velocity: 20
+  _max_ball_velocity: 10
   _movement_speed: 500
   _holder: {fileID: 4591612961260248}
   _desired_hit_timer: 0.75
