@@ -13,20 +13,24 @@ public class PlayerBehaviour : CharacterBehaviour {
         _rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
+    private new void Update()
     {
+        base.Update();
         if(_ball != null)
         {
             _ball.transform.position = _holder.position;
         }
 
-        Move();
-        Rotate();
-
-        //throws the ball once the player presses the fire button and he has something that he can throw
-        if(Input.GetButton("Fire" + _player_number) && _ball != null)
+        if (_got_hit == false)
         {
-            Fire();
+            Move();
+            Rotate();
+
+            //throws the ball once the player presses the fire button and he has something that he can throw
+            if (Input.GetButton("Fire" + _player_number) && _ball != null)
+            {
+                Fire();
+            }
         }
     }
 

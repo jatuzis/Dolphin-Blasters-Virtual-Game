@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4495797984249248}
-  - component: {fileID: 135585815574786046}
+  - component: {fileID: 65661685945169512}
   - component: {fileID: 135375916540313050}
   - component: {fileID: 54056466574482506}
   - component: {fileID: 114731659372259568}
@@ -303,6 +303,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 1
+--- !u!65 &65661685945169512
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054108571107824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114731659372259568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -315,10 +327,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _die_magnitude: 15
-  _bounce_multiplier: 100
+  _bounce_multiplier: 1
   _max_ball_velocity: 8
   _movement_speed: 500
   _holder: {fileID: 4591612961260248}
+  _desired_hit_timer: 0.75
   _player_number: 1
 --- !u!135 &135375916540313050
 SphereCollider:
@@ -331,16 +344,4 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.7
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &135585815574786046
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1054108571107824}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}

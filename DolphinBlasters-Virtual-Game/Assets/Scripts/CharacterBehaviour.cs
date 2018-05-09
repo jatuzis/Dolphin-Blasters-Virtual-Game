@@ -25,6 +25,15 @@ public abstract class CharacterBehaviour : MonoBehaviour {
 
     protected float _wall_hit_magnitude;
 
+    protected bool _got_hit;
+
+    protected bool _is_at_wall;
+
+    protected float _hit_timer;
+
+    [SerializeField]
+    protected float _desired_hit_timer;
+
     protected abstract void Move();
     protected abstract void Fire();
 
@@ -38,24 +47,46 @@ public abstract class CharacterBehaviour : MonoBehaviour {
         }
     }
 
+    public void Update()
+    {
+        Debug.Log(_is_at_wall);
+        if(_hit_timer < 0)
+        {
+            _got_hit = false;
+        }
+        else
+        {
+            _hit_timer -= Time.deltaTime;
+        }
+    }
+
     protected void CalculateBlowBack(GameObject obj)
     {
         if(obj.tag == "Ball")
         {
             Vector3 dir = transform.position - obj.transform.position;
             Debug.Log(dir.normalized * _bounce_multiplier + " " + _bounce_multiplier);
-            _rb.AddForce(dir.normalized * _bounce_multiplier, ForceMode.VelocityChange);
+            _rb.AddForce(dir * _bounce_multiplier, ForceMode.VelocityChange);
+
+            _got_hit = true;
+            _hit_timer = _desired_hit_timer;
 
             dir = obj.transform.position - transform.position;
             Rigidbody obj_rb = obj.GetComponent<Rigidbody>();
             obj_rb.velocity = Vector3.zero;
-            obj_rb.AddForce(dir * 1000);
+            obj_rb.AddForce(dir.normalized * 1000);
         }
     }
 
     //increases the _bounce_multiplier so it gets harder for the player when he gets hit 
     protected void ReceiveDamage(GameObject obj)
     {
+        if (_is_at_wall == true)
+        {
+            Die();
+            Destroy(this.gameObject);
+            return;
+        }
         CalculateBlowBack(obj);
         _bounce_multiplier *= 1.1f;
     }
@@ -65,7 +96,14 @@ public abstract class CharacterBehaviour : MonoBehaviour {
     {
         Debug.Log("You died!");
         Destroy(this.gameObject);
-        return;
+    }
+
+    protected void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Border")
+        {
+            _is_at_wall = false;
+        }
     }
 
     protected void OnTriggerEnter(Collider other)
@@ -73,6 +111,7 @@ public abstract class CharacterBehaviour : MonoBehaviour {
         if (other.tag == "Border")
         {
             _wall_hit_magnitude = _rb.velocity.magnitude;
+            _is_at_wall = true;
         }
     }
 
@@ -90,7 +129,7 @@ public abstract class CharacterBehaviour : MonoBehaviour {
                 ball_rb.velocity = Vector3.zero;
                 GameManager.current_ball_owner = this;
             }
-            else
+            else if(GameManager.current_ball_owner == null)
             {
                 ReceiveDamage(ball);
             }
