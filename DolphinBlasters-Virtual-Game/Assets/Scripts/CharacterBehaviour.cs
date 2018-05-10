@@ -19,6 +19,16 @@ public abstract class CharacterBehaviour : MonoBehaviour {
     [SerializeField]
     protected Transform _holder;
 
+    [SerializeField]
+    protected float _dash_speed;
+
+    [SerializeField]
+    protected float _start_dash_time;
+
+    protected float _dash_time;
+
+    protected bool _is_dashing;
+
     protected GameObject _ball;
 
     protected Rigidbody _rb;
@@ -38,7 +48,13 @@ public abstract class CharacterBehaviour : MonoBehaviour {
 
     protected abstract void Move();
     protected abstract void Fire();
+    protected abstract void Dodge();
 
+
+    private void Start()
+    {
+        _dash_time = _start_dash_time;
+    }
     //rotates the player towards the direction he is moving
     protected void Rotate()
     {
@@ -61,6 +77,7 @@ public abstract class CharacterBehaviour : MonoBehaviour {
         }
     }
 
+    //TODO: fix it that the character sometimes doesnt get a draw back
     protected void CalculateBlowBack(GameObject obj, Transform trans)
     {
         if(obj.tag == "Ball")
@@ -141,7 +158,7 @@ public abstract class CharacterBehaviour : MonoBehaviour {
         }
         if(collision.gameObject.tag == "Border")
         {
-            if(_wall_hit_magnitude > _die_magnitude)
+            if(_wall_hit_magnitude > _die_magnitude && _got_hit == true)
             {
                 Die();
             }
