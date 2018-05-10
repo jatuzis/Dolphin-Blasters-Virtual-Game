@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98c922d828a38d44991d354caa4baac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _die_magnitude: 15
+  _die_magnitude: 8
   _bounce_multiplier: 1
   _max_ball_velocity: 10
   _movement_speed: 500
