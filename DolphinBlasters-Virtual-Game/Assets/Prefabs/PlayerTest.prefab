@@ -321,6 +321,7 @@ MonoBehaviour:
   _holder: {fileID: 4591612961260248}
   _dash_speed: 1000
   _start_dash_time: 0.1
+  _max_ball_time: 3
   _desired_hit_timer: 0.75
   _player_number: 1
 --- !u!135 &135375916540313050
