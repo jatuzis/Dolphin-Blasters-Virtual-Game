@@ -25,6 +25,11 @@ public abstract class CharacterBehaviour : MonoBehaviour {
     [SerializeField]
     protected float _start_dash_time;
 
+    [SerializeField]
+    protected float _max_ball_time;
+
+    protected float _ball_time;
+
     protected float _dash_time;
 
     protected bool _is_dashing;
@@ -67,7 +72,22 @@ public abstract class CharacterBehaviour : MonoBehaviour {
 
     public void Update()
     {
-        if(_hit_timer < 0)
+        //ball falls to ground if the holding time exceeds
+        if (_ball != null)
+        {
+            if (_ball_time <= 0)
+            {
+                _ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                _ball = null;
+                GameManager.SetRestrictedCharacrter(this);
+                GameManager.current_ball_owner = null;
+            }
+            else
+            {
+                _ball_time -= Time.deltaTime;
+            }
+        }
+        if(_hit_timer <= 0)
         {
             _got_hit = false;
         }
@@ -143,13 +163,14 @@ public abstract class CharacterBehaviour : MonoBehaviour {
             Transform trans = collision.gameObject.transform;
             GameObject ball = collision.gameObject;
             Rigidbody ball_rb = ball.GetComponent<Rigidbody>();
-            if (_ball_velocity.magnitude < _max_ball_velocity && GameManager.current_ball_owner == null)
+            if (_ball_velocity.magnitude < _max_ball_velocity && GameManager.current_ball_owner == null && GameManager.restricted_character != this)
             {
                 _ball = ball;
                 ball_rb.velocity = Vector3.zero;
+                _ball_time = _max_ball_time;
                 GameManager.current_ball_owner = this;
             }
-            else if(GameManager.current_ball_owner == null && _got_hit == false)
+            else if(GameManager.current_ball_owner == null && _got_hit == false && _ball_velocity.magnitude > _max_ball_velocity)
             {
                 _got_hit = true;
                 _hit_timer = _desired_hit_timer;

@@ -43,6 +43,7 @@ public class PlayerBehaviour : CharacterBehaviour {
         _rb.velocity = velocity;
     }
 
+    //TODO: find a solution for GetButton
     protected override void Dodge()
     {
         if(_is_dashing == false)
