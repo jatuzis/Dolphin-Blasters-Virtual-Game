@@ -155,6 +155,14 @@ public abstract class CharacterBehaviour : MonoBehaviour {
         }
     }
 
+    protected void PickUpBall(GameObject ball, Rigidbody ball_rb)
+    {
+        _ball = ball;
+        ball_rb.velocity = Vector3.zero;
+        _ball_time = _max_ball_time;
+        GameManager.current_ball_owner = this;
+    }
+
     //recognizes collisions
     //if collided with the ball while the ball is slow enough he picks up the ball
     protected void OnCollisionEnter(Collision collision)
@@ -166,16 +174,17 @@ public abstract class CharacterBehaviour : MonoBehaviour {
             Rigidbody ball_rb = ball.GetComponent<Rigidbody>();
             if (_ball_velocity.magnitude < _max_ball_velocity && GameManager.current_ball_owner == null && GameManager.restricted_character != this)
             {
-                _ball = ball;
-                ball_rb.velocity = Vector3.zero;
-                _ball_time = _max_ball_time;
-                GameManager.current_ball_owner = this;
+                PickUpBall(ball, ball_rb);
             }
-            else if(GameManager.current_ball_owner == null && _got_hit == false && _ball_velocity.magnitude > _max_ball_velocity)
+            else if (GameManager.current_ball_owner == null && _got_hit == false && _ball_velocity.magnitude > _max_ball_velocity && _is_dashing == false)
             {
                 _got_hit = true;
                 _hit_timer = _desired_hit_timer;
                 ReceiveDamage(ball, trans);
+            }
+            else if (GameManager.current_ball_owner == null && _got_hit == false && _is_dashing == true)
+            {
+                PickUpBall(ball, ball_rb);
             }
         }
         if(collision.gameObject.tag == "Border")
