@@ -48,7 +48,7 @@ public class PlayerBehaviour : CharacterBehaviour {
     {
         if(_is_dashing == false)
         {
-            if(Input.GetButton("Dodge" + _player_number))
+            if(Input.GetButtonDown("Dodge" + _player_number))
             {
                 Debug.Log("DASH");
                 _is_dashing = true;

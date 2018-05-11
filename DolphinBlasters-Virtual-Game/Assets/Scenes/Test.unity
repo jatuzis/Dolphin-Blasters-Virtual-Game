@@ -1234,7 +1234,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1341310041}
   serializedVersion: 5
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   looping: 1
@@ -1287,7 +1287,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1443114969
+  randomSeed: -1552781149
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -1377,7 +1377,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.3897059, g: 0.41916826, b: 1, a: 1}
+      maxColor: {r: 0.4603698, g: 0.5054542, b: 0.9632353, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4681,8 +4681,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1592672051}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 14.32, z: 44.3}
+  m_LocalRotation: {x: 0, y: 0.38268343, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 1.25, y: 1.32, z: 0.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1632655736}
@@ -4697,7 +4697,7 @@ Transform:
   - {fileID: 1130380734}
   m_Father: {fileID: 0}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 45, z: 0}
 --- !u!1 &1612063501
 GameObject:
   m_ObjectHideFlags: 0
@@ -4730,7 +4730,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 97adae59d48a78a4bab3dec76c194ef7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4791,15 +4791,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: ec8d737ca85320f4da22e4758be3a9c8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6000023
+      value: 1.26
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ec8d737ca85320f4da22e4758be3a9c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.76
+      value: -2.7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ec8d737ca85320f4da22e4758be3a9c8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ec8d737ca85320f4da22e4758be3a9c8, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4823,7 +4823,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ec8d737ca85320f4da22e4758be3a9c8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.71388274
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ec8d737ca85320f4da22e4758be3a9c8, type: 3}
       propertyPath: m_LocalScale.y
@@ -4831,7 +4831,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ec8d737ca85320f4da22e4758be3a9c8, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.72249895
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: ec8d737ca85320f4da22e4758be3a9c8, type: 3}
       propertyPath: m_Enabled
@@ -4953,7 +4953,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1632655735}
   serializedVersion: 5
-  lengthInSec: 5
+  lengthInSec: 1
   simulationSpeed: 1
   stopAction: 0
   looping: 1
@@ -5006,7 +5006,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -2129114273
+  randomSeed: -251235790
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -5096,7 +5096,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.3897059, g: 0.41916826, b: 1, a: 1}
+      maxColor: {r: 0.4603698, g: 0.5054542, b: 0.9632353, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
