@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -89,7 +89,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: 3b9f5913126bae142939ce106ce871f9,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -181,9 +182,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _drop_radius: 8.5
-  _max_obstacle_count: 50
-  _min_drop_cooldown: 1
-  _max_drop_cooldown: 2
+  _max_obstacle_count: 10
+  _min_drop_cooldown: 5
+  _max_drop_cooldown: 10
   _obstacle: {fileID: 1047163715767698, guid: 26c4abe102e56054391e67888a1ed8ec, type: 2}
 --- !u!4 &156200704
 Transform:
