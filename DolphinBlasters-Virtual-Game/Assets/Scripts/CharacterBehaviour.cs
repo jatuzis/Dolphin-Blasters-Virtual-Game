@@ -60,6 +60,7 @@ public abstract class CharacterBehaviour : MonoBehaviour {
     {
         _dash_time = _start_dash_time;
     }
+
     //rotates the player towards the direction he is moving
     protected void Rotate()
     {

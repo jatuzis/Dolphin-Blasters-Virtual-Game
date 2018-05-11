@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour {
 
     private void Update()
     {
-        Debug.Log(restricted_character);
         if(_restriction_timer <= 0)
         {
             restricted_character = null;

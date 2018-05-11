@@ -50,16 +50,16 @@ public class PlayerBehaviour : CharacterBehaviour {
         {
             if(Input.GetButtonDown("Dodge" + _player_number))
             {
-                Debug.Log("DASH");
                 _is_dashing = true;
+                _dash_time = _start_dash_time;
             }
         }
-        else
+        if(_is_dashing == true)
         {
-            if(_dash_time <= 0)
+            if(_dash_time <= 0.0f)
             {
                 _is_dashing = false;
-                _dash_time = _start_dash_time;
+                
             }
             else
             {
