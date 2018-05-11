@@ -104,18 +104,27 @@ public abstract class CharacterBehaviour : MonoBehaviour {
         if(obj.tag == "Ball")
         {
             Vector3 dir = transform.position - trans.position;
+            dir.y = 0f;
             Debug.Log(dir + " " + dir.normalized + " " + dir.normalized * _bounce_multiplier + " " + _bounce_multiplier);
             _rb.AddForce(dir.normalized * 0.1f * _bounce_multiplier);
 
             dir = trans.position - transform.position;
+            dir.y = 0f;
             Rigidbody obj_rb = obj.GetComponent<Rigidbody>();
             obj_rb.velocity = Vector3.zero;
             obj_rb.AddForce(dir.normalized * 1000);
         }
+        else
+        {
+            Vector3 dir = transform.position - trans.position;
+            dir.y = 0f;
+            Debug.Log(dir + " " + dir.normalized + " " + dir.normalized * _bounce_multiplier + " " + _bounce_multiplier);
+            _rb.AddForce(dir.normalized * 0.1f * _bounce_multiplier);
+        }
     }
 
     //increases the _bounce_multiplier so it gets harder for the player when he gets hit 
-    protected void ReceiveDamage(GameObject obj, Transform trans)
+    public void ReceiveDamage(GameObject obj, Transform trans)
     {
         if (_is_at_wall == true)
         {
