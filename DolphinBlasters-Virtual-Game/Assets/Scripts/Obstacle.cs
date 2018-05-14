@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour {
 
+    [SerializeField]
+    private Canvas _canvas;
+
     private ObstacleSpawner _spawner;
     private bool _is_grounded;
 
@@ -11,6 +14,7 @@ public class Obstacle : MonoBehaviour {
     {
         _is_grounded = false;
         _spawner = FindObjectOfType<ObstacleSpawner>();
+        _canvas.transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
     }
 
     private void OnCollisionEnter(Collision collision)
