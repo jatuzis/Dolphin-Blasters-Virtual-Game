@@ -11,6 +11,7 @@ public class PlayerBehaviour : CharacterBehaviour {
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        //_controller = GetComponent<CharacterController>();
     }
 
     private new void Update()
@@ -41,6 +42,8 @@ public class PlayerBehaviour : CharacterBehaviour {
     {
         Vector3 velocity = new Vector3(Input.GetAxis("Horizontal" + _player_number), 0, Input.GetAxis("Vertical" + _player_number)) * _movement_speed * Time.deltaTime;
         _rb.velocity = velocity;
+        /*if(_controller != null)
+        _controller.Move(velocity * _movement_speed * Time.deltaTime);*/
     }
 
     //TODO: find a solution for GetButton
@@ -73,6 +76,7 @@ public class PlayerBehaviour : CharacterBehaviour {
     //Fires the ball and sets the ball to null
     protected override void Fire()
     {
+        Debug.Log("FIRE!");
         Rigidbody ball_rb = _ball.GetComponent<Rigidbody>();
         ball_rb.velocity = Vector3.zero;
         ball_rb.AddForce(new Vector3(transform.forward.normalized.x * 2000, 0, transform.forward.normalized.z * 2000) /* * _throwing_force?*/, ForceMode.Force);
