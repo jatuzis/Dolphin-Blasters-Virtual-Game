@@ -49,6 +49,8 @@ public abstract class CharacterBehaviour : MonoBehaviour {
 
     protected Vector3 _ball_velocity;
 
+    protected Rigidbody _ball_rb;
+
     [SerializeField]
     protected float _desired_hit_timer;
 
@@ -173,6 +175,7 @@ public abstract class CharacterBehaviour : MonoBehaviour {
         ball_rb.velocity = Vector3.zero;
         _ball_time = _max_ball_time;
         GameManager.current_ball_owner = this;
+        _ball_rb = ball_rb;
     }
 
     //recognizes collisions
