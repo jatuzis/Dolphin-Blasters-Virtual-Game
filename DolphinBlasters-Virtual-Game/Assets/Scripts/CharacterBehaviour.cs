@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//[RequireComponent(typeof(CharacterController))]
 public abstract class CharacterBehaviour : MonoBehaviour {
 
     [SerializeField]
@@ -50,6 +51,8 @@ public abstract class CharacterBehaviour : MonoBehaviour {
 
     [SerializeField]
     protected float _desired_hit_timer;
+
+    //protected CharacterController _controller;
 
     protected abstract void Move();
     protected abstract void Fire();
