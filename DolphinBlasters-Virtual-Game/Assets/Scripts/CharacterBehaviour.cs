@@ -79,7 +79,7 @@ public abstract class CharacterBehaviour : MonoBehaviour {
         }
     }
 
-    public void Update()
+    protected void fixedUpdate()
     {
         //ball falls to ground if the holding time exceeds
         if (_ball != null)
@@ -124,12 +124,13 @@ public abstract class CharacterBehaviour : MonoBehaviour {
 
             //dir = trans.position - transform.position;
             //dir.y = 0f;
-			dir.x = -dir.x ;
-			dir.z = -dir.z;
+//			dir.x = -dir.x ;
+//			dir.z = -dir.z;
             Rigidbody obj_rb = obj.GetComponent<Rigidbody>();
+			dir = -obj_rb.velocity;
             obj_rb.velocity = Vector3.zero;
 			dir = dir.normalized;
-			dir.Scale(new Vector3( 100f,100f,100f)); 
+			//dir.Scale(new Vector3( 1000f,1000f,1000f)); 
 			Debug.Log (dir.magnitude);
 			obj_rb.AddForce(dir);
         }
