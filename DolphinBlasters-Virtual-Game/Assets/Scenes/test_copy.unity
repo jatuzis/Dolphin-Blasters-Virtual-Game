@@ -4780,12 +4780,12 @@ Prefab:
     - target: {fileID: 114731659372259568, guid: 39ff76448bee7d34db204ba9b2c5a288,
         type: 2}
       propertyPath: _max_ball_velocity
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114731659372259568, guid: 39ff76448bee7d34db204ba9b2c5a288,
         type: 2}
       propertyPath: _throw_power
-      value: 1500
+      value: 2000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 39ff76448bee7d34db204ba9b2c5a288, type: 2}
@@ -8437,12 +8437,12 @@ Prefab:
     - target: {fileID: 114731659372259568, guid: 39ff76448bee7d34db204ba9b2c5a288,
         type: 2}
       propertyPath: _throw_power
-      value: 1500
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 114731659372259568, guid: 39ff76448bee7d34db204ba9b2c5a288,
         type: 2}
       propertyPath: _max_ball_velocity
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 39ff76448bee7d34db204ba9b2c5a288, type: 2}

@@ -79,7 +79,7 @@ public abstract class CharacterBehaviour : MonoBehaviour {
         }
     }
 
-    protected void fixedUpdate()
+    protected void FixedUpdate()
     {
         //ball falls to ground if the holding time exceeds
         if (_ball != null)

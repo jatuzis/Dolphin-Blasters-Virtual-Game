@@ -14,9 +14,9 @@ public class PlayerBehaviour : CharacterBehaviour {
         //_controller = GetComponent<CharacterController>();
     }
 
-    private new void fixedUpdate()
+    private new void FixedUpdate()
     {
-        base.fixedUpdate();
+        base.FixedUpdate();
         if(_ball != null)
         {
             _ball_rb.velocity = Vector3.zero;
