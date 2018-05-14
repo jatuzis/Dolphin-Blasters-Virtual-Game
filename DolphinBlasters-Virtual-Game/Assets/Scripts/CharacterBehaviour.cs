@@ -60,6 +60,7 @@ public abstract class CharacterBehaviour : MonoBehaviour {
     {
         _dash_time = _start_dash_time;
     }
+
     //rotates the player towards the direction he is moving
     protected void Rotate()
     {
@@ -103,18 +104,27 @@ public abstract class CharacterBehaviour : MonoBehaviour {
         if(obj.tag == "Ball")
         {
             Vector3 dir = transform.position - trans.position;
+            dir.y = 0f;
             Debug.Log(dir + " " + dir.normalized + " " + dir.normalized * _bounce_multiplier + " " + _bounce_multiplier);
             _rb.AddForce(dir.normalized * 0.1f * _bounce_multiplier);
 
             dir = trans.position - transform.position;
+            dir.y = 0f;
             Rigidbody obj_rb = obj.GetComponent<Rigidbody>();
             obj_rb.velocity = Vector3.zero;
             obj_rb.AddForce(dir.normalized * 1000);
         }
+        else
+        {
+            Vector3 dir = transform.position - trans.position;
+            dir.y = 0f;
+            Debug.Log(dir + " " + dir.normalized + " " + dir.normalized * _bounce_multiplier + " " + _bounce_multiplier);
+            _rb.AddForce(dir.normalized * 0.1f * _bounce_multiplier);
+        }
     }
 
     //increases the _bounce_multiplier so it gets harder for the player when he gets hit 
-    protected void ReceiveDamage(GameObject obj, Transform trans)
+    public void ReceiveDamage(GameObject obj, Transform trans)
     {
         if (_is_at_wall == true)
         {
@@ -154,6 +164,14 @@ public abstract class CharacterBehaviour : MonoBehaviour {
         }
     }
 
+    protected void PickUpBall(GameObject ball, Rigidbody ball_rb)
+    {
+        _ball = ball;
+        ball_rb.velocity = Vector3.zero;
+        _ball_time = _max_ball_time;
+        GameManager.current_ball_owner = this;
+    }
+
     //recognizes collisions
     //if collided with the ball while the ball is slow enough he picks up the ball
     protected void OnCollisionEnter(Collision collision)
@@ -165,16 +183,17 @@ public abstract class CharacterBehaviour : MonoBehaviour {
             Rigidbody ball_rb = ball.GetComponent<Rigidbody>();
             if (_ball_velocity.magnitude < _max_ball_velocity && GameManager.current_ball_owner == null && GameManager.restricted_character != this)
             {
-                _ball = ball;
-                ball_rb.velocity = Vector3.zero;
-                _ball_time = _max_ball_time;
-                GameManager.current_ball_owner = this;
+                PickUpBall(ball, ball_rb);
             }
-            else if(GameManager.current_ball_owner == null && _got_hit == false && _ball_velocity.magnitude > _max_ball_velocity)
+            else if (GameManager.current_ball_owner == null && _got_hit == false && _ball_velocity.magnitude > _max_ball_velocity && _is_dashing == false)
             {
                 _got_hit = true;
                 _hit_timer = _desired_hit_timer;
                 ReceiveDamage(ball, trans);
+            }
+            else if (GameManager.current_ball_owner == null && _got_hit == false && _is_dashing == true)
+            {
+                PickUpBall(ball, ball_rb);
             }
         }
         if(collision.gameObject.tag == "Border")
