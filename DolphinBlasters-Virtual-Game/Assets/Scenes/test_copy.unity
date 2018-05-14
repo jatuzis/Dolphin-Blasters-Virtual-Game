@@ -4855,7 +4855,7 @@ Prefab:
     - target: {fileID: 114731659372259568, guid: 39ff76448bee7d34db204ba9b2c5a288,
         type: 2}
       propertyPath: _bounce_multiplier
-      value: 0.04
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4591612961260248, guid: 39ff76448bee7d34db204ba9b2c5a288, type: 2}
       propertyPath: m_LocalPosition.x
@@ -4869,7 +4869,7 @@ Prefab:
     - target: {fileID: 114731659372259568, guid: 39ff76448bee7d34db204ba9b2c5a288,
         type: 2}
       propertyPath: _throw_power
-      value: 3000
+      value: 2000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 39ff76448bee7d34db204ba9b2c5a288, type: 2}
@@ -8512,7 +8512,7 @@ Prefab:
     - target: {fileID: 114731659372259568, guid: 39ff76448bee7d34db204ba9b2c5a288,
         type: 2}
       propertyPath: _bounce_multiplier
-      value: 0.04
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4591612961260248, guid: 39ff76448bee7d34db204ba9b2c5a288, type: 2}
       propertyPath: m_LocalPosition.x
@@ -8521,7 +8521,7 @@ Prefab:
     - target: {fileID: 114731659372259568, guid: 39ff76448bee7d34db204ba9b2c5a288,
         type: 2}
       propertyPath: _throw_power
-      value: 3000
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 114731659372259568, guid: 39ff76448bee7d34db204ba9b2c5a288,
         type: 2}
