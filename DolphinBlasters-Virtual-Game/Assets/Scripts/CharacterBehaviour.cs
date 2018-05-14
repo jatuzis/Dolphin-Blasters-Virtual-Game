@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//[RequireComponent(typeof(CharacterController))]
 public abstract class CharacterBehaviour : MonoBehaviour {
-
-	[SerializeField]
-	protected float _throw_power;
 
     [SerializeField]
     protected float _die_magnitude;
@@ -52,12 +48,8 @@ public abstract class CharacterBehaviour : MonoBehaviour {
 
     protected Vector3 _ball_velocity;
 
-    protected Rigidbody _ball_rb;
-
     [SerializeField]
     protected float _desired_hit_timer;
-
-    //protected CharacterController _controller;
 
     protected abstract void Move();
     protected abstract void Fire();
@@ -79,7 +71,7 @@ public abstract class CharacterBehaviour : MonoBehaviour {
         }
     }
 
-    protected void FixedUpdate()
+    public void Update()
     {
         //ball falls to ground if the holding time exceeds
         if (_ball != null)
@@ -111,31 +103,16 @@ public abstract class CharacterBehaviour : MonoBehaviour {
     {
         if(obj.tag == "Ball")
         {
-			//_rb.velocity = Vector3.zero;
             Vector3 dir = transform.position - trans.position;
-			Rigidbody obj_rb = obj.GetComponent<Rigidbody>();
-			dir = obj_rb.velocity * _bounce_multiplier;
-			_rb.velocity = dir;
             dir.y = 0f;
-//            Debug.Log(dir + " " + dir.normalized + " " + dir.normalized * _bounce_multiplier + " " + _bounce_multiplier);
-//			//dir = dir.normalized;
-//			Debug.Log (dir.magnitude);
-//			dir.Scale( new Vector3( _bounce_multiplier, _bounce_multiplier, _bounce_multiplier));
-//			Debug.Log (dir.magnitude);
-//			_rb.AddForce(dir);
+            Debug.Log(dir + " " + dir.normalized + " " + dir.normalized * _bounce_multiplier + " " + _bounce_multiplier);
+            _rb.AddForce(dir.normalized * 0.1f * _bounce_multiplier);
 
-
-            //dir = trans.position - transform.position;
-            //dir.y = 0f;
-//			dir.x = -dir.x ;
-//			dir.z = -dir.z;
-//            Rigidbody obj_rb = obj.GetComponent<Rigidbody>();
-			dir = obj_rb.velocity;
-			obj_rb.velocity = Vector3.Reflect(dir, Vector3.Cross( obj.transform.position, dir));
-//			dir = dir.normalized;
-//			//dir.Scale(new Vector3( 1000f,1000f,1000f)); 
-//			Debug.Log (dir.magnitude);
-//			obj_rb.AddForce(dir);
+            dir = trans.position - transform.position;
+            dir.y = 0f;
+            Rigidbody obj_rb = obj.GetComponent<Rigidbody>();
+            obj_rb.velocity = Vector3.zero;
+            obj_rb.AddForce(dir.normalized * 1000);
         }
         else
         {
@@ -193,7 +170,6 @@ public abstract class CharacterBehaviour : MonoBehaviour {
         ball_rb.velocity = Vector3.zero;
         _ball_time = _max_ball_time;
         GameManager.current_ball_owner = this;
-        _ball_rb = ball_rb;
     }
 
     //recognizes collisions
