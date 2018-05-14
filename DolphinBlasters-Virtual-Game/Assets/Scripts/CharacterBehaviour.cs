@@ -130,8 +130,8 @@ public abstract class CharacterBehaviour : MonoBehaviour {
 //			dir.x = -dir.x ;
 //			dir.z = -dir.z;
 //            Rigidbody obj_rb = obj.GetComponent<Rigidbody>();
-//			dir = -obj_rb.velocity;
-//            obj_rb.velocity = Vector3.zero;
+			dir = obj_rb.velocity;
+			obj_rb.velocity = Vector3.Reflect(dir, Vector3.Cross( obj.transform.position, dir));
 //			dir = dir.normalized;
 //			//dir.Scale(new Vector3( 1000f,1000f,1000f)); 
 //			Debug.Log (dir.magnitude);
