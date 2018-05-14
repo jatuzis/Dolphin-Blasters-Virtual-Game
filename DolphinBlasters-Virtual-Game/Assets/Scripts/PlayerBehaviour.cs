@@ -80,7 +80,7 @@ public class PlayerBehaviour : CharacterBehaviour {
         Debug.Log("FIRE!");
         Rigidbody ball_rb = _ball.GetComponent<Rigidbody>();
         ball_rb.velocity = Vector3.zero;
-        ball_rb.AddForce(new Vector3(transform.forward.normalized.x * 2000, 0, transform.forward.normalized.z * 2000) /* * _throwing_force?*/, ForceMode.Force);
+		ball_rb.AddForce(new Vector3(transform.forward.normalized.x * _throw_power, 0, transform.forward.normalized.z * _throw_power) /* * _throwing_force?*/, ForceMode.Force);
         _ball = null;
         GameManager.current_ball_owner = null;
         _ball_rb = null;
